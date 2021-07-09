@@ -21,29 +21,36 @@
     
     <header>
         <!--  -->
-        <nav class="nav-extended text-shadow blue accent-4"> 
+        <nav class="nav-extended text-shadow blue-grey">
             <div class="nav-wrapper">
-                <a href="#!" class="brand-logo">Cooking Book</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="{{url_for('get_recipes')}}" class="brand-logo">Cooking Book</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars">MENU</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="sass.html">Sass</a></li>
-                    <li><a href="badges.html">Components</a></li>
-                    <li><a href="collapsible.html">Javascript</a></li>
-                    <li><a href="mobile.html">Mobile</a></li>
+                    <li><a href="{{url_for('get_recipes')}}">Home</a></li>
+                    <li><a href="#">Recipe</a></li>
+                    <li><a href="#">Log In</a></li>
+                    <li><a href="#">Log Out</a></li>
+                    <li><a href="#">New Recipe</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Registration</a></li>
+    
                 </ul>
             </div>
         </nav>
-    <!-- Mobile navbar -->
+        <!-- Mobile navbar -->
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">Javascript</a></li>
-            <li><a href="mobile.html">Mobile</a></li>
+            <li><a href="{{url_for('get_recipes')}}">Home</a></li>
+            <li><a href="#">Recipe</a></li>
+            <li><a href="#">Log In</a></li>
+            <li><a href="#">Log Out</a></li>
+            <li><a href="#">New Recipe</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Registration</a></li>
         </ul>
     </header>
 
 
-    {%block content%}
+    {% block content %}
     {% endblock %}
     <!-- JQuert -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
