@@ -1,26 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Registration card -->
     <h3 class="center-align">Registration</h3>
     <div class="row">
-        <form class="col s12 m8 offset-m2">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
             <div class="card-panel">
+<!-- Username -->
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-user-check prefix blue-grey-text"></i>
-                        <input id="username" name="username" type="text" class="validate">
+                        <input id="username" name="username" type="text" class="validate" minlength="5" maxlength="15" pattern="^$[a-zA-z0-9]{5,15}" required>
                         <label for="username">Username</label>
                     </div>
                 </div>
+<!-- Password -->
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-user-lock prefix blue-grey-text"></i>
-                        <input id="password" name="password" type="password" class="validate">
-                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password" class="validate" minlength="5" maxlength="15" required>
+                        <label for="password" class="fas fa-key">Password</label>
                     </div>
                 </div>
+<!-- Submit button -->
                 <div class="row">
-                    <button type="submit" class="col s12 btn-large text-blue-grey">
-                        Register
+                    <button type="submit" class="col s8 offset-m2 btn-large text-blue-grey z-depth-1">
+                        <i class="fas fa-check">Register</i>
                     </button>
                 </div>
             </div>
