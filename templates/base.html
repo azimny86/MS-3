@@ -28,24 +28,29 @@
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{url_for('get_recipes')}}">Home</a></li>
                     <li><a href="#">Recipe</a></li>
-                    <li><a href="{{url_for('login')}}">Log In</a></li>
-                    <li><a href="{{url_for('logout')}}">Log Out</a></li>
-                    <li><a href="#">New Recipe</a></li>
-                    <li><a href="{{ url_for('profile' ,username=session['user'])}}">Profile</a></li>
-                    <li><a href="{{url_for('register')}}">Registration</a></li>
-    
+                    {% if session.user %}
+                        <li><a href="#">New Recipe</a></li>
+                        <li><a href="{{ url_for('profile' ,username=session['user'])}}">Profile</a></li>
+                        <li><a href="{{url_for('logout')}}">Log Out</a></li>
+                    {% else %}
+                        <li><a href="{{url_for('login')}}">Log In</a></li>
+                        <li><a href="{{url_for('register')}}">Registration</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
         <!-- Mobile navbar -->
         <ul class="sidenav" id="mobile-demo">
             <li><a href="{{url_for('get_recipes')}}">Home</a></li>
-            <li><a href="#">Recipe</a></li>
-            <li><a href="{{url_for('login')}}">Log In</a></li>
-            <li><a href="{{url_for('logout')}}">Log Out</a></li>
-            <li><a href="#">New Recipe</a></li>
-            <li><a href="{{ url_for('profile' ,username=session['user'])}}">Profile</a></li>
-            <li><a href="{{url_for('register')}}">Registration</a></li>
+                    <li><a href="#">Recipe</a></li>
+                    {% if session.user %}
+                        <li><a href="#">New Recipe</a></li>
+                        <li><a href="{{ url_for('profile' ,username=session['user'])}}">Profile</a></li>
+                        <li><a href="{{url_for('logout')}}">Log Out</a></li>
+                    {% else %}
+                        <li><a href="{{url_for('login')}}">Log In</a></li>
+                        <li><a href="{{url_for('register')}}">Registration</a></li>
+                    {% endif %}
         </ul>
     </header>
     <section>
@@ -54,7 +59,7 @@
             {% if messages %}
                 {% for message in messages %}
                     <div class="row flashes">
-                        <h3 class="teal darken-1 white-text center-align">{{ message }}</h3>
+                        <h3 class="text-shadow teal lighten-3 white-text center-align">{{ message }}</h3>
                     </div>
                 {% endfor %}
             {% endif %}
