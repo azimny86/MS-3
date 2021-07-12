@@ -5,7 +5,7 @@
         {% for recipe in recipes %}
             <li>
                 <div class="collapsible-header text-shadow blue-grey white-text">
-                    <strong>{{recipes.category_name}}</strong>
+                    <strong class="blue-text text-darken-2">{{recipes.category_name}}</strong>
                     <i class="fas fa-angle-down"></i>
                     {% if recipe.user_favorite == "on"%}
                         <i class="far fa-star yellow-text tooltipped" data-position="right" data-tooltip="I am a favourite dish"></i>
@@ -13,6 +13,7 @@
                 </div>
                 <div class="collapsible-body">
                     <span>
+                        <p>{{recipes.category_name}}</p>
                         <p>{{recipe.recipe_name}}</p>
                             <p>Prep: {{recipe.recipe_prep}} min</p>
                             <p>Cooking Time: {{recipe.recipe_cook}} min</p>

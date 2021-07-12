@@ -83,6 +83,18 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+@app.route("/recipe")
+def recipe():
+    recipe = list(mongo.db.recipe.find())
+    return render_template("recipe.html" , recipes=recipes)
+
+
+@app.route("/search" , methods = ["GET" , "POST" ])
+def search():
+    search = request.form.get("search")
+    recipes = list(mongo.db.recipes.find({"$text" : {"$search" : search}}))
+    return render_template("recipe.html" , recipes=recipes)
+
 @app.route("/logout")
 def logout():
     
