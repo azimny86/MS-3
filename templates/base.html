@@ -60,7 +60,11 @@
                 <div class="input-field col s12">
                 <input id="search" name="search" type="text" class="validate"  required>
                 <label class="label-icon" for="search"><i class="fas fa-search">Search</i></label>
-                <a class="waves-effect text-shadow blue-grey btn-large"><strong>Search</strong></a>
+                <div class="col s12">
+                    <button class="waves-effect text-shadow blue-grey btn-large"><strong>Search</strong></button>
+                    <a href="{{ url_for('get_recipes') }}" class="waves-effect text-shadow blue-grey btn-large"><i class="fas fa-redo"></i></a>
+                </div>
+                
                 </div>
             </div>
         </form>
