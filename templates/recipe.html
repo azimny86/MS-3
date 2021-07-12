@@ -1,28 +1,27 @@
 {% extends "base.html"%}
 {% block content %}
-    {% for recipe in recipes %}
-        {{recipe.category_name}}<br>
-        {{recipe.recipe_img}}<br>
-        {{recipe.recipe_alt}}<br>
-        {{recipe.recipe_name}}<br>
-        {{ recipe.recipe_prep}}<br>
-        {{recipe.recipe_cook}}<br>
-        {{recipe.recipe_serves}}<br>
-        {{recipe.recipe_method}}<br>
-        {{recipe.user_favorite}}<br>
-    {% endfor %}
+    
     <ul class="collapsible">
-        <li>
-            <div class="collapsible-header text-shadow blue-grey white-text"><i class="fas fa-angle-down"></i><strong>Breakfast</strong></div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-            <div class="collapsible-header text-shadow blue-grey white-text"><i class="fas fa-angle-down"></i><strong>Lunch</strong></div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-            <div class="collapsible-header text-shadow blue-grey white-text"><i class="fas fa-angle-down"></i><strong>Dinner</strong></div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
+        {% for recipe in recipes %}
+            <li>
+                <div class="collapsible-header text-shadow blue-grey white-text">
+                    <strong>{{recipes.category_name}}</strong>
+                    <i class="fas fa-angle-down"></i>
+                    {% if recipe.user_favorite == "on"%}
+                        <i class="far fa-star yellow-text tooltipped" data-position="right" data-tooltip="I am a favourite dish"></i>
+                    {% endif %}
+                </div>
+                <div class="collapsible-body">
+                    <span>
+                        <p>{{recipe.recipe_name}}</p>
+                            <p>Prep: {{recipe.recipe_prep}} min</p>
+                            <p>Cooking Time: {{recipe.recipe_cook}} min</p>
+                            <p>Serving: {{recipe.recipe_serves}}</p>
+                            <p>Ingredients: {{ recipe.recipe_ingredients }}</p>
+                            <p>Method: {{recipe.recipe_method}}</p>
+                    </span>
+                </div>
+            </li>
+        {% endfor %}
     </ul>
 {% endblock %}
