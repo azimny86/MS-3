@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+    <h3 class="text-shadow   blue-grey-text center-align">Add Recipe</h3>
+
+    
+
+
+        {% for category in categories %}
+            {% if category.category_name == recipe.category_name %}
+                <option value="{{category.category_name}}" selected>{{category.category_name}}</option>
+            {% else %}
+                <option value="{{category.category_name}}">{{category.category_name}}</option>
+            {% endif %}
+        {% endfor %}
+    
+        <!-- <form action="#" required>
+            <div class="row"  >
+                <p>
+                <label>
+                    <input type="checkbox" class="filled-in"  />
+                    <span>Breakfast</span>
+                </label>
+                </p>
+                <p>
+                <label>
+                    <input type="checkbox" class="filled-in" />
+                    <span>Lunch</span>
+                </label>
+                </p>
+                <p>
+                <label>
+                    <input type="checkbox" class="filled-in"  />
+                    <span>Dinner</span>
+                </label>
+                </p>
+            </div>
+        </form> -->
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s5 offset-m1">
+                <input placeholder="What will you name your dish?" id="recipe_name" name="recipe_name" type="text" class="validate">
+                <label for="recipe_name">Name of the dish</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5 offset-m1">
+                <input placeholder="How long you prepare the dish?" id="recipe_prep" name="recipe_prep" type="text" class="validate">
+                <label for="recipe_prep">Preparation time</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5 offset-m1">
+                <input placeholder="How long will you cook the meal?" id="recipe_cook" name="recipe_cook" type="text" class="validate">
+                <label for="recipe_cook">Cooking time</label>
+                </div>
+            </div>
+            <form action="POST">
+                <div class="col s5 offset-m1">
+                    <p class="range-field">
+                    <input type="range" id="recipe_serves" min="1" max="10" />
+                    </p>
+                </div>
+            </form>
+
+        </form>
+      </div>
+
+{% endblock %}

@@ -72,19 +72,16 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
     if session["user"]:
-        return render_template("profile.html", username = username)
+        return render_template("profile.html", username = session["user"])
 
     return redirect(url_for("login"))
 
 
 @app.route("/recipe")
-def recipe():
+def recipes():
     recipe = list(mongo.db.recipe.find())
     return render_template("recipe.html" , recipes=recipes)
 
@@ -101,6 +98,11 @@ def logout():
     flash("The user has logged out")
     session.clear()
     return redirect(url_for("login"))
+
+
+@app.route("/add_recipe")
+def add_recipe():
+    return render_template("add_recipe.html")
 
 if __name__== "__main__":
     app.run(host=os.environ.get("IP"),
