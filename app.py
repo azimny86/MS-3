@@ -17,7 +17,6 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/home")
 def home():
     return render_template("home.html"  )
 
@@ -77,12 +76,6 @@ def profile():
         return render_template("profile.html", username = session["user"])
 
     return redirect(url_for("login"))
-
-
-@app.route("/recipe")
-def recipes():
-    recipe = list(mongo.db.recipe.find())
-    return render_template("recipe.html" , recipes=recipes)
 
 
 @app.route("/search" , methods = ["GET" , "POST" ])
