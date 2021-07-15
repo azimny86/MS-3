@@ -20,15 +20,14 @@
 <body>
     
     <header>
-        <!--  -->
+<!--         
         <nav class="nav-extended text-shadow blue-grey">
             <div class="nav-wrapper">
-                <a href="{{url_for('get_recipes')}}" class="brand-logo">Cooking Book</a>
+                <a href="{{url_for('home')}}" class="brand-logo">Cooking Book</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars">MENU</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="{{url_for('get_recipes')}}">Home</a></li>
-                    <li><a href="#">Recipe</a></li>
-                        
+                    <li><a href="{{url_for('home')}}">Home</a></li>
+                    <li><a href="{{url_for('recipes')}}">Recipe</a></li>
                     {% if session.user %}
                         <li><a href="{{url_for('add_recipe')}}">New Recipe</a></li>
                         <li><a href="{{ url_for('profile' ,username=session['user'])}}">Profile</a></li>
@@ -38,11 +37,41 @@
                         <li><a href="{{url_for('register')}}">Registration</a></li>
                     {% endif %}
                 </ul>
-            </div>
+            </div> -->
+            <!-- Dropdown Structure -->
+            
+            <nav>
+                <div class="nav-wrapper text-shadow blue-grey">
+                    <a href="#!" class="brand-logo">Concept-Cooking</a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="{{url_for('home')}}">Home</a></li>
+                         <!-- Dropdown Trigger -->
+                         <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="fas fa-arrow-down right"></i></a></li>
+                        {% if session.user %}
+                        <li><a href="{{url_for('add_recipe')}}">New Recipe</a></li>
+                        <li><a href="{{ url_for('profile' ,username=session['user'])}}">Profile</a></li>
+                        <li><a href="{{url_for('logout')}}">Log Out</a></li>
+                        {% else %}
+                        <li><a href="{{url_for('login')}}">Log In</a></li>
+                        <li><a href="{{url_for('register')}}">Registration</a></li>
+                        {% endif %}
+                       
+                    </ul>
+                </div>
+            </nav>
+            <!-- Dropdown content-->
+            <ul id="dropdown1" class="dropdown-content blue-grey ">
+                <li><a href="{{url_for('recipes')}}">Breakfast</a></li>
+                <li class="divider"></li>
+                <li><a href="{{url_for('recipes')}}">Lunch</a></li>
+                <li class="divider"></li>
+                <li><a href="{{url_for('recipes')}}">Dinner</a></li>
+            </ul>
+
         </nav>
         <!-- Mobile navbar -->
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="{{url_for('get_recipes')}}">Home</a></li>
+            <li><a href="{{url_for('home')}}">Home</a></li>
                     <li><a href="#">Recipe</a></li>
                     {% if session.user %}
                         <li><a href="{{url_for('add_recipe')}}">New Recipe</a></li>
@@ -54,50 +83,7 @@
                     {% endif %}
         </ul>
     </header>
-    <!-- Search box  -->
-    <div class="row">  
-        <form method="POST" action="{{ url_for('search') }}" class="col s8 offset-m2">
-            <div class="row center-align">
-                <div class="input-field col s12">
-                <input id="search" name="search" minlength="2" type="text" class="validate"  required>
-                <label class="label-icon" for="search"><i class="fas fa-search">Search</i></label>
-                <div class="col s12">
-                    <button class="waves-effect text-shadow blue-grey btn-large"><strong>Search</strong></button>
-                    <a href="{{ url_for('get_recipes') }}" class="waves-effect text-shadow blue-grey btn-large"><i class="fas fa-redo"></i>Clear Search</a>
-                </div>
-                
-                </div>
-            </div>
-        </form>
-    </div>
-    <!-- Display recipis from database -->
-    {% if recipes|length > 0 %}
-        <div class="row">
-            {% for recipe in recipes %}
-                <div class="col s12 mg 14">
-                    <div class="card">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img src="{{ recipe.recipe_img }}" alt="{{recipe.recipe_alt}}">
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title">
-                                <p><strong>{{recipes.category_name}} </strong></p>
-                            </span>
-                            <p>{{recipe.recipe_name}}</p>
-                            <p>Prep: {{recipe.recipe_prep}} min</p>
-                            <p>Cooking Time: {{recipe.recipe_cook}} min</p>
-                            <p>Serving: {{recipe.recipe_serves}}</p>
-                            <p>Ingredients: {{ recipe.recipe_ingredients }}</p>
-                            <p>Method: {{recipe.recipe_method}}</p>
-                            
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <h3 class="red-text center-align">No recipes found</h3>
-    {% endif %}
+   
     <section>
         <!-- flash massages -->
         {% with messages = get_flashed_messages() %}
@@ -110,10 +96,15 @@
             {% endif %}
         {% endwith %}
     </section>
+    
 
-    <main class="containser">
-    {% block content %}
-    {% endblock %}
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+            <footer>
+                <strong>Cooking-Concept© 2020Copyright Text</strong>
+            </footer>
+        
     </main>
     <!-- JQuert -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
