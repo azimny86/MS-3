@@ -1,68 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
-    <h3 class="text-shadow   blue-grey-text center-align">Add Recipe</h3>
+<h2 class="text-shadow blue-grey-text center-align">Add Recipe</h2>
+<h3 class="blue-grey-text center-align">Here you can add your new recipe so that other users can also use it!</h3>
 
-    
 
+<div class="row">
+    <form action="{{url_for('add_recipe')}}" method="POST" class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="What's your dish's name?" id="recipe_name" name="recipe_name" type="text" class="validate">
+          <label for="recipe_name"><i class="fas fa-utensils"></i>Dish Name</label>
+        </div>
 
-        {% for category in categories %}
-            {% if category.category_name == recipe.category_name %}
-                <option value="{{category.category_name}}" selected>{{category.category_name}}</option>
-            {% else %}
-                <option value="{{category.category_name}}">{{category.category_name}}</option>
-            {% endif %}
-        {% endfor %}
-    
-        <!-- <form action="#" required>
-            <div class="row"  >
-                <p>
-                <label>
-                    <input type="checkbox" class="filled-in"  />
-                    <span>Breakfast</span>
-                </label>
-                </p>
-                <p>
-                <label>
-                    <input type="checkbox" class="filled-in" />
-                    <span>Lunch</span>
-                </label>
-                </p>
-                <p>
-                <label>
-                    <input type="checkbox" class="filled-in"  />
-                    <span>Dinner</span>
-                </label>
-                </p>
-            </div>
-        </form> -->
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s5 offset-m1">
-                <input placeholder="What will you name your dish?" id="recipe_name" name="recipe_name" type="text" class="validate">
-                <label for="recipe_name">Name of the dish</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s5 offset-m1">
-                <input placeholder="How long you prepare the dish?" id="recipe_prep" name="recipe_prep" type="text" class="validate">
-                <label for="recipe_prep">Preparation time</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s5 offset-m1">
-                <input placeholder="How long will you cook the meal?" id="recipe_cook" name="recipe_cook" type="text" class="validate">
-                <label for="recipe_cook">Cooking time</label>
-                </div>
-            </div>
-            <form action="POST">
-                <div class="col s5 offset-m1">
-                    <p class="range-field">
-                    <input type="range" id="recipe_serves" min="1" max="10" />
-                    </p>
-                </div>
-            </form>
+        <div class="input-field col s2">
+            <select id="category_name" name="category_name">
+                {% for category in categories %}
+                    <option>{{category.category_name}}</option>
+                {% endfor %}
+            </select>
+            <label>Choose your Category </label>
+          </div>
 
-        </form>
+        <div class="input-field col s6">
+          <input id="recipe_img" name="recipe_img" type="url" pattern="https://*" class="validate" placeholder="You have a picture of your dish, please add">
+          <label for="recipe_img"><i class="fas fa-camera-retro"></i>Dish Photo</label>
+        </div>
       </div>
 
+      <div class="row">
+        <div class="input-field col s12">
+                <textarea id="recipe_ingredients" name="recipe_ingredients" rows="6" maxlength="3500" class="materialize-textarea" placeholder="Please separate each ingredient on a new line by hitting the enter key after each ingredient"></textarea>
+                <label for="recipe_ingredients"><i class="fas fa-list-alt"></i>Recipe Ingredients</label>
+        </div>
+      </div>
+        <div class="row">
+            <div class="input-field col s12">
+                    <textarea id="recipe_method" name="recipe_method" class="materialize-textarea" placeholder="Please separate each ingredient on a new line by hitting the enter key after each step"></textarea>
+                    <label for="recipe_method"><i class="fas fa-ellipsis-v"></i>Recipe Method</label>
+            </div>
+        </div>
+        <button class="btn waves-effect blue-grey waves-light" type="submit" >Submit
+            <i class="fas fa-long-arrow-alt-right"></i>
+        </button>
+        <a href="{{url_for('home')}}" class="btn btn-success orange lighten-1">Cancel <i class="far fa-times-circle"></i></a>
+
+    </form>
+  </div>
 {% endblock %}

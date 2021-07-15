@@ -94,7 +94,26 @@ def logout():
 
 @app.route("/add_recipe")
 def add_recipe():
-    return render_template("add_recipe.html")
+    categories = mongo.db.categories.find()
+    return render_template("add_recipe.html" , categories=categories  )
+
+
+@app.route("/insert_recipe" , methods = ["POST"])
+def insert_recipe():
+    recipes = mongo.db.recipes
+    form_data = request.form.to_dict()
+    ingrediants_list = form_data["ingrediants"].split("\n")
+    method_list = form_data["method"].split("\n")
+    recipe =  recipes.insert_one(
+        {
+        "category_name": form_data["category_name"],
+        "recipe_name": form_data["recipe_name"],
+        "recipe_img": form_data["recipe_img"],
+        "recipe_ingredients": form_data["recipe_ingredients"],
+        "recipe_cook": form_data["recipe_cook"],
+        }
+    )
+    return redirect(url_for("home"))
 
 if __name__== "__main__":
     app.run(host=os.environ.get("IP"),
