@@ -20,33 +20,15 @@
 <body>
     
     <header>
-<!--         
-        <nav class="nav-extended text-shadow blue-grey">
-            <div class="nav-wrapper">
-                <a href="{{url_for('home')}}" class="brand-logo">Cooking Book</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars">MENU</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{url_for('home')}}">Home</a></li>
-                    <li><a href="{{url_for('recipes')}}">Recipe</a></li>
-                    {% if session.user %}
-                        <li><a href="{{url_for('add_recipe')}}">New Recipe</a></li>
-                        <li><a href="{{ url_for('profile' ,username=session['user'])}}">Profile</a></li>
-                        <li><a href="{{url_for('logout')}}">Log Out</a></li>
-                    {% else %}
-                        <li><a href="{{url_for('login')}}">Log In</a></li>
-                        <li><a href="{{url_for('register')}}">Registration</a></li>
-                    {% endif %}
-                </ul>
-            </div> -->
-            <!-- Dropdown Structure -->
+
+            
             
             <nav>
                 <div class="nav-wrapper text-shadow blue-grey">
-                    <a href="#!" class="brand-logo">Concept-Cooking</a>
+                    <a href="{{url_for('home')}}" class="brand-logo">Concept-Cooking</a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="{{url_for('home')}}">Home</a></li>
-                         <!-- Dropdown Trigger -->
-                         <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="fas fa-arrow-down right"></i></a></li>
+                         
                         {% if session.user %}
                         <li><a href="{{url_for('add_recipe')}}">New Recipe</a></li>
                         <li><a href="{{ url_for('profile' ,username=session['user'])}}">Profile</a></li>
@@ -55,17 +37,19 @@
                         <li><a href="{{url_for('login')}}">Log In</a></li>
                         <li><a href="{{url_for('register')}}">Registration</a></li>
                         {% endif %}
+                        <!-- Dropdown Trigger -->
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="fas fa-arrow-down right"></i></a></li>
                        
                     </ul>
                 </div>
             </nav>
             <!-- Dropdown content-->
             <ul id="dropdown1" class="dropdown-content blue-grey ">
-                <li><a href="{{url_for('recipes')}}">Breakfast</a></li>
+                <li><a href="#">Breakfast</a></li>
                 <li class="divider"></li>
-                <li><a href="{{url_for('recipes')}}">Lunch</a></li>
+                <li><a href="#">Lunch</a></li>
                 <li class="divider"></li>
-                <li><a href="{{url_for('recipes')}}">Dinner</a></li>
+                <li><a href="#">Dinner</a></li>
             </ul>
 
         </nav>
