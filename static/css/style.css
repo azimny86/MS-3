@@ -1,7 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Tourney:ital,wght@1,900&display=swap');
 .text-shadow {
     text-shadow: 2px 2px 2px rgb(0, 0, 0 , 0.5);
 }
 
 .flashes h4 {
     line-height: 8;
+}
+
+.brand-logo {
+    margin-left: 2px;
+    font-family: 'Pacifico', cursive;
+}
+
+footer {
+    position: absolute;
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 1px;
+    height: 35px;
+    padding: 8px;
+    margin: 100px 0 0 -320px;
+    width: 100vw;
+    bottom: 0;
 }
