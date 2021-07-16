@@ -1,28 +1,40 @@
 {% extends "base.html"%}
 {% block content %}
-    
-    <ul class="collapsible">
-        {% for recipe in recipes %}
-            <li>
-                <div class="collapsible-header text-shadow blue-grey white-text">
-                    <strong class="blue-text text-darken-2">{{recipes.category_name}}</strong>
-                    <i class="fas fa-angle-down"></i>
-                    {% if recipe.user_favorite == "on"%}
-                        <i class="far fa-star yellow-text tooltipped" data-position="right" data-tooltip="I am a favourite dish"></i>
-                    {% endif %}
+        <div class="col s12 m7">
+                <h2 class="header">{{recipe.recipe_name}}</h2>
+                <div class="card horizontal">
+                        <div class="card-image">
+                                <img src="{{recipe.recipe_img}}" alt="{{recipe.recipe_alt}}">
+                        </div>
+                        <div class="card-stacked">
+                                <div class="card-content">
+                                        <p>Prep time: {{recipe.recipe_prep}} min</p>
+                                        <p>Cooking time: {{recipe.recipe_cook}} min</p>
+                                        <p>Serves: {{recipe.recipe_serves}} People</p>
+                                        <ul class="collapsible expandable ">
+                                                <li>
+                                                        <div class="collapsible-header"><i class="far fa-list-alt"></i>Ingredients</div>
+                                                        <div class="collapsible-body">
+                                                                <span>
+                                                                        {% for ingredient in recipe.recipe_ingredients %}
+                                                                                <p>{{ingredient}}</p>
+                                                                        {% endfor %}
+                                                                </span>
+                                                        </div>
+                                                </li>
+                                                <li>
+                                                        <div class="collapsible-header"><i class="fas fa-list-ol"></i>Method</div>
+                                                        <div class="collapsible-body">
+                                                                <span>
+                                                                        {% for method in recipe.recipe_method %}
+                                                                                <p>{{method}}</p>
+                                                                        {% endfor %}
+                                                                </span>
+                                                        </div>
+                                                </li>
+                                        </ul>
+                                
+                        </div>
                 </div>
-                <div class="collapsible-body">
-                    <span>
-                        <p>{{recipes.category_name}}</p>
-                        <p>{{recipe.recipe_name}}</p>
-                        <p>Prep: {{recipe.recipe_prep}} min</p>
-                        <p>Cooking Time: {{recipe.recipe_cook}} min</p>
-                        <p>Serving: {{recipe.recipe_serves}}</p>
-                        <p>Ingredients: {{ recipe.recipe_ingredients }}</p>
-                        <p>Method: {{recipe.recipe_method}}</p>
-                    </span>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
+        </div>
 {% endblock %}

@@ -98,6 +98,11 @@ def categories(selected_category):
     return render_template("categories.html" , recipes = recipes , selected_category = selected_category , page_title=selected_category + "Recipes")
 
 
+@app.route("/recipe/<recipe_id>")
+def recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template("recipe.html" , recipe=recipe)
+
 @app.route("/add_recipe")
 def add_recipe():
     categories = mongo.db.categories.find()
