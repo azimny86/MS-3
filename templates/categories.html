@@ -7,15 +7,26 @@
                                     <img class="activator" src="{{recipe.recipe_img}}" alt="{{recipe.recipe_alt}}">
                                 </div>
                                 <div class="card-content">
-                                    <span class="card-title activator grey-text text-darken-4"><strong>{{recipe.category_name}}<br>{{recipe.recipe_name}}</strong> <br><i class="fas fa-ellipsis-v right"></i>
-                                    
+                                    <span
+                                        class="card-title activator grey-text text-darken-4"><strong>{{recipe.category_name}}<br>{{recipe.recipe_name}}</strong>
+                                        <br><i class="fas fa-ellipsis-v right"></i>
+                            
                                     </span>
-                                    <p><a href="{{url_for('recipe')}}">This is a link</a></p>
+                                    <p><a href="{{url_for('recipe' , recipe_id=recipe._id)}}">This is a link</a></p>
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">{{recipe.recipe_name}} <i class="fas fa-times right"></i></span>
-                                    <p>Ingredients: <br> {{ recipe.recipe_ingredients }}</p>
-                                    <p>Method:<br> {{recipe.recipe_method}}</p>
+                                    <span class="card-title grey-text text-darken-4">{{recipe.recipe_name}} <i
+                                            class="fas fa-times right"></i></span>
+                                    <p>Ingredients: <br>
+                                        {% for ingredient in recipe.recipe_ingredients %}
+                                    <p>{{ingredient}}</p>
+                                    {% endfor %}
+                                    </p>
+                                    <p>Method:<br>
+                                        {% for method in recipe.recipe_method %}
+                                    <p>{{method}}</p>
+                                    {% endfor %}
+                                    </p>
                                 </div>
                             </div>
                 
