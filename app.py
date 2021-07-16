@@ -92,6 +92,12 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/categories/<selected_category>")
+def categories(selected_category):
+    recipes = mongo.db.recipes.find()
+    return render_template("categories.html" , recipes = recipes , selected_category = selected_category , page_title=selected_category + "Recipes")
+
+
 @app.route("/add_recipe")
 def add_recipe():
     categories = mongo.db.categories.find()
