@@ -1,35 +1,29 @@
 {% extends "base.html"%}
 {% block content %}
             {% for recipe in recipes %}
-                
+                {% if recipe.category_name == selected_category %}
+                        <div class="category-name">
+                            <h2>{{recipe.category_name}}s:</h2>
+                        </div>
                             <div class="card row">
                                 <div class="card-image waves-effect waves-block waves-light col s2">
                                     <img class="activator" src="{{recipe.recipe_img}}" alt="{{recipe.recipe_alt}}">
                                 </div>
                                 <div class="card-content">
-                                    <span
-                                        class="card-title activator grey-text text-darken-4"><strong>{{recipe.category_name}}<br>{{recipe.recipe_name}}</strong>
-                                        <br><i class="fas fa-ellipsis-v right"></i>
-                            
+                                    <span class="card-title activator grey-text text-darken-4">
+                                        <strong>{{recipe.recipe_name}}</strong><br><i class="fas fa-ellipsis-v right"></i>
                                     </span>
                                     <p><a href="{{url_for('recipe' , recipe_id=recipe._id)}}">This is a link</a></p>
                                 </div>
                                 <div class="card-reveal">
-                                    <span class="card-title grey-text text-darken-4">{{recipe.recipe_name}} <i
-                                            class="fas fa-times right"></i></span>
-                                    <p>Ingredients: <br>
-                                        {% for ingredient in recipe.recipe_ingredients %}
-                                    <p>{{ingredient}}</p>
-                                    {% endfor %}
-                                    </p>
-                                    <p>Method:<br>
-                                        {% for method in recipe.recipe_method %}
-                                    <p>{{method}}</p>
-                                    {% endfor %}
-                                    </p>
+                                    <span class="card-title grey-text text-darken-4"><strong>{{recipe.recipe_name}}</strong> <i class="fas fa-times right"></i></span>
+                                            <p>Prep time: {{recipe.recipe_prep}} min</p>
+                                            <p>Cooking time: {{recipe.recipe_cook}} min</p>
+                                            <p>Serves: {{recipe.recipe_serves}} People</p>
+                                    
                                 </div>
                             </div>
-                
+                {% endif %}
             {% endfor %}
         
 {% endblock %}
