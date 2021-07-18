@@ -12,6 +12,10 @@
     font-family: 'Pacifico', cursive;
 }
 
+h2 {
+    font-family: 'Pacifico', cursive;
+}
+
 .card-content , .category-name{
     text-transform: capitalize;
 }
