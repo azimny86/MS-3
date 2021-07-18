@@ -1,40 +1,49 @@
 {% extends "base.html"%}
 {% block content %}
+
         <div class="col s12 m7">
                 <h2 class="header">{{recipe.recipe_name}}</h2>
                 <div class="card horizontal">
                         <div class="card-image">
-                                <img src="{{recipe.recipe_img}}" alt="{{recipe.recipe_alt}}">
+                                <img class="photo-recipe" src="{{recipe.recipe_img}}" alt="{{recipe.recipe_alt}}">
                         </div>
                         <div class="card-stacked">
                                 <div class="card-content">
-                                        <p>Prep time: {{recipe.recipe_prep}} min</p>
-                                        <p>Cooking time: {{recipe.recipe_cook}} min</p>
-                                        <p>Serves: {{recipe.recipe_serves}} People</p>
+                                        <blockquote class="blue-grey-text">
+                                                <p>Prep time: {{recipe.recipe_prep}} min</p>
+                                                <p>Cooking time: {{recipe.recipe_cook}} min</p>
+                                                <p>Serves: {{recipe.recipe_serves}} People</p>
+                                        </blockquote>
                                         <ul class="collapsible expandable ">
                                                 <li>
-                                                        <div class="collapsible-header"><i class="far fa-list-alt"></i>Ingredients</div>
+                                                        <div class="collapsible-header"><i
+                                                                        class="far fa-list-alt"></i>Ingredients</div>
                                                         <div class="collapsible-body">
                                                                 <span>
                                                                         {% for ingredient in recipe.recipe_ingredients %}
-                                                                                <p>{{ingredient}}</p>
+                                                                        <p>{{ingredient}}</p>
                                                                         {% endfor %}
                                                                 </span>
                                                         </div>
                                                 </li>
                                                 <li>
-                                                        <div class="collapsible-header"><i class="fas fa-list-ol"></i>Method</div>
+                                                        <div class="collapsible-header"><i class="fas fa-list-ol"></i>Method
+                                                        </div>
                                                         <div class="collapsible-body">
                                                                 <span>
                                                                         {% for method in recipe.recipe_method %}
-                                                                                <p>{{method}}</p>
+                                                                        <p>{{method}}</p>
                                                                         {% endfor %}
                                                                 </span>
                                                         </div>
                                                 </li>
                                         </ul>
-                                
+                                        <div class="recipe-buttons">
+                                                <a class="waves-effect waves-light btn-large" href="{{url_for('edit_recipe' , recipe_id=recipe_id)}}"><i class="material-icons left"></i>Edit</a>
+                                                <a class="waves-effect waves-light btn-large"><i class="material-icons right"></i>Delete</a>
+                                        </div>
+                                </div>
                         </div>
-                </div>
+                </div> 
         </div>
 {% endblock %}

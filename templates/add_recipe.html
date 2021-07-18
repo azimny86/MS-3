@@ -7,12 +7,12 @@
       <form action="{{url_for('insert_recipe')}}" method="POST" class="col s12">
         <div class="row">
           <div class="input-field col s6">
-            <input placeholder="What's your dish's name?" id="recipe_name" name="recipe_name" type="text" class="validate">
+            <input placeholder="What's your dish's name?" id="recipe_name" name="recipe_name" type="text" class="validate" required>
             <label for="recipe_name"><i class="fas fa-utensils"></i>Dish Name</label>
           </div>
           <div class="row">
               <div class="input-field col s2">
-                <select id="category_name" name="category_name">
+                <select id="category_name" name="category_name" required>
                   {% for category in categories %}
                   <option>{{category.category_name}}</option>
                   {% endfor %}
@@ -28,7 +28,7 @@
         </div>
         <div class="row">
           <div class="input-field col s6">
-            <input placeholder="Time you need to prepare a meal in minutes" id="recipe_prep" name="recipe_prep" type="number" min="0" class="validate">
+            <input placeholder="Time you need to prepare a meal in minutes" id="recipe_prep" name="recipe_prep" type="number" min="0" class="validate" required>
             <label for="recipe_prep"><i class="fas fa-stopwatch"></i>Preparation time:</label>
           </div>
           <div class="input-field col s6">
@@ -36,22 +36,19 @@
             <label for="recipe_cook"><i class="fas fa-hourglass-half"></i>Cooking time:</label>
           </div>
           <div class="input-field col s6">
-            <input placeholder="For how many people will this dish be ?" id="recipe_serves" name="recipe_serves" type="number" min="0" class="validate">
+            <input placeholder="For how many people will this dish be ?" id="recipe_serves" name="recipe_serves" type="number" min="0" class="validate" required>
             <label for="recipe_serves"><i class="fas fa-users"></i> Serves:</label>
           </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="recipe_ingredients" name="recipe_ingredients" rows="6" maxlength="3500"
-              class="materialize-textarea"
-              placeholder="Please separate each ingredient on a new line by hitting the enter key after each ingredient"></textarea>
+            <textarea id="recipe_ingredients" name="recipe_ingredients" rows="6" maxlength="3500" class="materialize-textarea" placeholder="Please separate each ingredient on a new line by hitting the enter key after each ingredient" required></textarea>
             <label for="recipe_ingredients"><i class="fas fa-list-alt"></i>Recipe Ingredients</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <textarea id="recipe_method" name="recipe_method" class="materialize-textarea"
-              placeholder="Please separate each ingredient on a new line by hitting the enter key after each step"></textarea>
+            <textarea id="recipe_method" name="recipe_method" class="materialize-textarea" placeholder="Please separate each ingredient on a new line by hitting the enter key after each step" required></textarea>
             <label for="recipe_method"><i class="fas fa-ellipsis-v"></i>Recipe Method</label>
           </div>
         </div>
