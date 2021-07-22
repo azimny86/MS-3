@@ -72,7 +72,7 @@ def login():
 
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
-    if session["user"]:
+    if "user" in session:
         return render_template("profile.html", username = session["user"])
 
     return redirect(url_for("login"))
@@ -101,30 +101,70 @@ def categories(selected_category):
 @app.route("/recipe/<recipe_id>")
 def recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("recipe.html" , recipe=recipe)
+    return render_template("recipe.html" , recipe=recipe , page_title = "See Recipe")
 
 @app.route("/add_recipe")
 def add_recipe():
     categories = mongo.db.categories.find()
-    return render_template("add_recipe.html" , categories=categories  )
+    return render_template("add_recipe.html" , categories=categories , page_title= "Add your Recipe" )
 
 
 @app.route("/insert_recipe" , methods = ["POST"])
 def insert_recipe():
     recipes = mongo.db.recipes
     form_data = request.form.to_dict()
-    ingrediants_list = form_data["ingrediants"].split("\n")
-    method_list = form_data["method"].split("\n")
+    ingrediants_list = form_data["recipe_ingredients"].split("\n")
+    method_list = form_data["recipe_method"].split("\n")
     recipe =  recipes.insert_one(
         {
         "category_name": form_data["category_name"],
         "recipe_name": form_data["recipe_name"],
         "recipe_img": form_data["recipe_img"],
-        "recipe_ingredients": form_data["recipe_ingredients"],
-        "recipe_cook": form_data["recipe_cook"],
+        "recipe_method" : method_list,
+        "recipe_ingredients": ingrediants_list
         }
     )
+    flash("Your recipe has been added")
+    return redirect(url_for("recipe", recipe_id=recipe.inserted_id))
+
+
+@app.route("/edit_recipe/<recipe_id>")
+def edit_recipe(recipe_id):
+    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    categories = mongo.db.categories.find()
+    ingrediants_list = [ingredient for ingredient in the_recipe['recipe_ingredients']]
+    method_list = [method for method in the_recipe['recipe_method']]
+
+    ingredient_text = "\n".join(ingrediants_list)
+    method_text = "\n".join(method_list)
+
+    return render_template("edit_recipe.html" , recipe= the_recipe , categories=categories , ingredient = ingredient_text ,
+                     method = method_list , page_title="Edit Recipe")
+
+
+@app.route("/update_recipe/<recipe_id>" , methods = ["POST"])
+def update_recipe(recipe_id):
+    recipe = mongo.db.recipes
+    form_data - request.form.to_dict()
+    ingrediants_list = form_data["recipe_ingredients"].split("\n" )
+    method_list = form_data["recipe_method"].split("\n")
+    recipe.update({"_id": ObjectId(recipe_id)}),
+    {
+            "category_name": form_data["category_name"],
+            "recipe_name": form_data["recipe_name"],
+            "recipe_img": form_data["recipe_img"],
+            "recipe_method" : method_list,
+            "recipe_ingredients": ingrediants_list
+        }
+
+
+@app.route("/delete_recipe/<recipe_id>")
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    flash("Successfully Deleted")
     return redirect(url_for("home"))
+
+
 
 if __name__== "__main__":
     app.run(host=os.environ.get("IP"),
