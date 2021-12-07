@@ -8,7 +8,7 @@
 }
 
 .brand-logo {
-    margin-left: 2px;
+    margin-left: 5px;
     font-family: 'Pacifico', cursive;
 }
 
@@ -28,4 +28,10 @@ h2 {
 
 footer {
     font-family: 'Pacifico', cursive;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 3px;
 }
