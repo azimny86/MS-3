@@ -12,6 +12,20 @@
     font-family: 'Pacifico', cursive;
 }
 
+/* photos */
+.photos{
+    height: 45vh;
+    object-fit: none;
+    margin-top: 5px;
+}
+
+
+.slideshow{
+    width: 100vw;
+    height: 50vh;
+    object-fit: contain;
+}
+
 h2 {
     font-family: 'Pacifico', cursive;
 }
